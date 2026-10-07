@@ -62,7 +62,7 @@ import type {
   SessionLog,
   TrainingState,
 } from './types'
-import { TutorWorkspace } from './tutor/ui/TutorWorkspace'
+import { StudyWorkspace as TutorWorkspace } from './tutor/remote/StudyWorkspace'
 
 type Page = 'today' | 'random' | 'problems' | 'tutor' | 'progress' | 'plan' | 'settings'
 type Toast = { id: number; message: string }
@@ -1093,4 +1093,10 @@ function MobileNav({ page, onNavigate }: { page: Page; onNavigate: (page: Page) 
   return <nav className="mobile-nav">{NAVIGATION.map(({ id, label, icon: Icon }) => <button key={id} className={page === id ? 'active' : ''} onClick={() => onNavigate(id)} aria-label={label}><Icon /><span>{shortLabels[id]}</span></button>)}</nav>
 }
 
-export default App
+export default function Application() {
+  // The thesis portal is the default. The original personal trainer stays opt-in.
+  const query = new URLSearchParams(window.location.search)
+  return query.get('personal') === '1' && query.get('tutor') !== '1'
+    ? <App />
+    : <main className="study-standalone"><TutorWorkspace /></main>
+}

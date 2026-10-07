@@ -1,4 +1,33 @@
-# Momentum
+# Tutor de programación competitiva · Tesis
+
+## Tutor personalizado conectado a tesis-pc
+
+La entrada principal abre el portal de tesis, conectado al tutor real de la carpeta hermana `tesis-pc`.
+El portal para alumnos incorpora códigos individuales, sesiones persistentes, historial,
+perfil y recomendaciones. La vista del investigador permite crear/revocar accesos y exportar
+los registros. Consulta [la guía del piloto por Internet](docs/INTEGRACION_TESIS_PC.md).
+
+```powershell
+pnpm build
+& scripts/start-pilot.ps1
+# Al terminar las sesiones:
+& scripts/stop-pilot.ps1
+```
+
+El script muestra una URL HTTPS temporal y la ubicación del código docente. Requiere
+el entorno y el modelo local ya preparados en `tesis-pc`. Mantén este equipo encendido.
+La ruta de alumnos es `/` (también se mantiene `/?tutor=1`). Incluye confirmación de trabajo en
+un solo problema, cronómetro persistente, finalización e historial con tiempos. El tiempo
+incluye espera del tutor y tiempo fuera de la pestaña, hasta finalizar explícitamente.
+Las pestañas **Enunciado / Codeforces** permiten consultar el material y abrir su fuente
+oficial; los problemas propios no reciben enlaces inventados. Los problemas de Codeforces
+se incorporan desde `tesis-pc/corpus/codeforces.json` con el comando de ingesta habitual.
+Consulta [el flujo y las métricas](docs/SESIONES_TESIS.md).
+
+## Entrenador personal anterior
+
+Se conserva para desarrollo local en `/?personal=1`, fuera del recorrido de la tesis.
+El portal servido por la pasarela pública siempre abre el tutor.
 
 Entrenador adaptativo y local-first para recuperar y superar el nivel **Specialist** en Codeforces. Está calibrado con el informe analítico de `Fernando_Benito`: prioriza fiabilidad de implementación, práctica constante y conversión bajo presión sobre volumen de problemas.
 

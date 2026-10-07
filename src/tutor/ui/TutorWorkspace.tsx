@@ -28,7 +28,6 @@ import {
   type TutorSystemInfo,
 } from '../application'
 import {
-  HELP_LEVELS,
   type HelpLevel,
   type TutorIntent,
 } from '../domain'
